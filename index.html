@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>기업 재무제표 조회 | FINARCHIVE</title>
+<meta name="description" content="기업의 재무제표를 쉬운 설명으로 확인하세요. 매출과 이익, 자산과 부채를 한눈에 살펴보는 FINARCHIVE." />
+<style>
+/* FINARCHIVE — monochrome editorial interface */
+:root{--ink:#111;--line:#dededb;--muted:#73736e;--paper:#f6f5f2}
+html{scroll-behavior:smooth}body{margin:0;padding:0;background:white;color:var(--ink);font-family:Arial,"Noto Sans KR","Malgun Gothic",sans-serif;-webkit-font-smoothing:antialiased}.hidden{display:none!important}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit}button,a,input,select{-webkit-tap-highlight-color:transparent}button,a{touch-action:manipulation}button{transition:background .2s,color .2s}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #777;outline-offset:5px}.skip{position:fixed;top:-100px;background:#111;color:white;padding:12px;z-index:20}.skip:focus{top:8px}
+.site-header{border-top:7px solid #111;background:#fff}.masthead{height:100px;display:flex;align-items:center;justify-content:center;position:relative;padding:0 5%}.brand{font-size:31px;letter-spacing:.19em;font-weight:750}.header-meta{position:absolute;left:5%;font-size:10px;letter-spacing:.18em;color:#666}.header-search{position:absolute;right:5%;display:flex;gap:10px;align-items:center;font-size:11px;letter-spacing:.1em}.header-search svg{width:19px}.mainnav{display:flex;justify-content:center;gap:48px;border-bottom:1px solid var(--line);height:51px;align-items:stretch;font-size:12px}.mainnav a{display:flex;align-items:center;position:relative}.mainnav a:first-child:after{content:"";position:absolute;bottom:0;height:3px;background:#111;left:0;right:0}
+.hero{position:relative;isolation:isolate;height:490px;overflow:hidden;background:#252724;color:white;display:flex;align-items:center;justify-content:center;text-align:center}.architecture{filter:grayscale(1);position:absolute;inset:0;width:100%;height:100%;z-index:-2}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.25),rgba(0,0,0,.3),rgba(0,0,0,.2));z-index:-1}.eyebrow{font-size:10px;letter-spacing:.26em;font-weight:600}.hero h1{font-size:clamp(34px,4.6vw,59px);line-height:1.35;letter-spacing:-.055em;font-weight:500;margin:22px 0}.hero p{font-size:13px;line-height:1.8;opacity:.85;margin:0}.hero-link{display:inline-block;margin-top:26px;border-bottom:1px solid #aaa;padding-bottom:7px;font-size:11px;letter-spacing:.08em}.hero-caption{position:absolute;bottom:22px;left:5%;right:5%;display:flex;justify-content:space-between;font-size:9px;letter-spacing:.2em;color:#d8d8d4}
+.wrap{max-width:1200px;margin:auto;padding:0 56px}.search-section{padding:65px 0 26px;text-align:center;scroll-margin-top:30px}.section-kicker{font-size:10px;letter-spacing:.23em;color:#666}.search-section h2{font-size:27px;letter-spacing:-.035em;margin:14px 0 12px;font-weight:500}.sub{text-align:center;color:#777;font-size:13px;line-height:1.8;margin:0}form{display:flex;gap:0;flex-wrap:nowrap;max-width:840px;margin:30px auto 14px;border:1px solid #aaa;text-align:left;background:#fff}.field{display:flex;flex-direction:column;justify-content:center;gap:8px;padding:15px 21px;flex:1;min-width:0}.field.year-field{flex:0 0 180px;border-left:1px solid var(--line)}.field label{font-size:9px;letter-spacing:.16em;color:#73736e}.field input,.field select{padding:0;border:0;border-radius:0;background:transparent;width:100%;min-width:0;outline-offset:4px;font-size:14px;color:#111;height:23px}.field input::placeholder{color:#999}.field input{flex:initial}button.search{color:#fff;background:#111;border-radius:0;min-width:122px;padding:0 26px;font-size:12px;font-weight:600;letter-spacing:.12em}button.search:hover{background:#363632}button.search:disabled{background:#777}.search-hint{font-size:11px;color:#888;margin:0}.status-area{min-height:30px}#status{font-size:13px;padding:14px 0;margin:0;line-height:1.8}#status:empty{display:none}#status.error{color:#9d2929}#route{display:none}#candBox{margin:20px 0 65px}.results-heading{display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #111;padding:0 0 16px;margin-bottom:0}.results-heading h2{font-size:18px;font-weight:500;margin:0}.results-heading span{font-size:11px;color:#777}.tablebox{border-radius:0;box-shadow:none;border-bottom:1px solid #111}th,td{padding:23px 18px;font-size:12px}th{background:#f5f5f3;font-weight:400;color:#666}tbody tr:hover{background:#fafaf8}.cand td:first-child{font-weight:600;font-size:14px}.cand td.crno{font-size:11px;color:#777}.cand td:last-child{text-align:right}.pick{display:inline-block;border:1px solid #111;padding:11px 15px;font-size:11px;white-space:nowrap;background:#111;color:white}.pick:hover{background:white;color:#111}.pager{margin-top:25px;font-size:12px}.pager button{border:1px solid #ccc;border-radius:0;color:#111;font-size:12px}.pager button:hover{background:#111;color:#fff}
+.home-notes{border-top:1px solid var(--line);padding:48px 0 65px;margin-top:35px;display:grid;grid-template-columns:repeat(3,1fr);gap:42px}.home-notes article{position:relative}.home-notes .number{font-family:Georgia,serif;font-size:25px;color:#aaa}.home-notes h3{font-size:15px;font-weight:500;margin:16px 0 12px}.home-notes p{color:#777;font-size:12px;line-height:1.9;margin:0}.home-notes .tiny{font-size:9px;letter-spacing:.18em;margin-top:18px;color:#888}
+.site-footer{background:#111;color:#fff;padding:42px 6% 25px}.footer-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:30px;border-bottom:1px solid #3b3b3b}.footer-brand{font-size:23px;letter-spacing:.18em}.footer-top p{font-size:11px;color:#aaa}.footer-bottom{display:flex;justify-content:space-between;margin-top:24px;gap:20px;font-size:10px;color:#90908d;line-height:1.8}.footer-bottom span:last-child{letter-spacing:.1em}
+.detail-top{display:none}.detail-mode .hero,.detail-mode .home-notes,.detail-mode .search-section h2,.detail-mode .search-section>.section-kicker,.detail-mode .search-section>.sub,.detail-mode .search-hint{display:none}.detail-mode .search-section{padding:0}.detail-mode .detail-top{display:flex;padding:28px 0 0;justify-content:space-between;font-size:11px;color:#777}.detail-mode form{margin:26px 0 15px;max-width:none}.detail-mode .name-field{display:none}.detail-mode .year-field{border-left:0;flex:1}.detail-mode #btn{display:none}.detail-mode .wrap{padding-bottom:65px}.detail-mode .corphead{justify-content:flex-start;gap:15px;margin:25px 0 32px;flex-direction:column;align-items:flex-start}.detail-mode #corp{font-size:30px;font-weight:500;letter-spacing:-.04em}.corp-meta{font-size:11px;color:#888;letter-spacing:.05em;margin-top:10px}.back{border:0!important;border-bottom:1px solid #aaa!important;border-radius:0!important;padding:4px 0!important;font-size:11px!important;color:#555!important}.tabs{justify-content:flex-start;gap:30px;border-bottom:1px solid #ccc;margin:15px 0 25px;flex-wrap:nowrap;overflow:auto}.tabs button{border:0;border-radius:0;background:white;color:#777;padding:15px 0;white-space:nowrap;font-size:13px}.tabs button.active{background:white;color:#111;border-bottom:3px solid #111}.guide{border:0;border-left:2px solid #111;background:#f6f5f2;color:#555;border-radius:0;padding:20px 23px;font-size:12px;line-height:1.9;margin-bottom:28px}.toolbar{gap:16px;margin-bottom:20px}.chips button,.units button,.views button{border:1px solid #ccc;border-radius:0;background:#fff;color:#666;padding:8px 11px;font-size:11px}.chips button.active,.units button.active,.views button.active{background:#111;color:white;border-color:#111}.units span{font-size:11px}.story{box-shadow:none;border:1px solid var(--line);border-radius:0;padding:26px;margin-bottom:22px}.story h3{font-size:16px;font-weight:500}.story ul{font-size:13px;line-height:2}.story b{color:#111}.signals{gap:16px}.sig{border-radius:0;border:1px solid var(--line);padding:23px;background:#f7f7f5!important;color:#222!important}.sig .st{font-size:11px;color:#777}.sig .sl{font-size:18px;margin:10px 0}.sig .sd{font-size:12px;color:#666}.cards{gap:16px;grid-template-columns:repeat(3,minmax(0,1fr));margin:22px 0}.card{box-shadow:none;border:1px solid var(--line);border-radius:0;padding:26px 22px}.card .cl{font-size:11px;color:#777;font-weight:400}.card .cv{font-family:Arial,"Malgun Gothic",sans-serif;font-size:27px;font-weight:500;letter-spacing:-.035em;margin:15px 0 9px}.card .cc{font-size:11px;font-weight:400}.card .cd{font-size:11px;line-height:1.9;border-top:1px solid #eee;margin-top:20px;padding-top:15px}.up,.down{color:#555}.card .cv.neg{color:#8d3434}.bar{border-radius:0;height:32px}.bar .debt{background:#333}.bar .eq{background:#999}.legend{font-size:11px}.legend i{border-radius:0}.legend span:first-child i{background:#333!important}.legend span:last-child i{background:#999!important}.fin .neg{color:#8d3434}.fin .acc{font-size:12px;font-weight:500}.fin .desc{font-size:11px;line-height:1.8}.fin td{font-variant-numeric:tabular-nums}.fin td:not(:first-child){text-align:right;white-space:nowrap}.tag{border-radius:0;background:#eee;color:#444;font-size:9px;font-weight:400;padding:2px 5px}.disc{font-size:10px;line-height:1.9;color:#888;text-align:left;margin-top:30px}.note{font-size:12px;color:#777;line-height:1.8;margin-top:15px}.new-tab-note{display:block;font-size:9px;color:#999;margin-top:5px}
+@media(min-width:1600px){.hero{height:560px}}@media(max-width:760px){.masthead{height:80px}.brand{font-size:24px}.header-meta,.header-search span{display:none}.mainnav{gap:28px;height:47px;font-size:11px}.hero{height:390px}.hero h1{font-size:38px}.hero p{font-size:12px}.hero-caption{font-size:8px}.wrap{padding:0 23px}.search-section{padding-top:42px}.search-section h2{font-size:24px}.sub{font-size:12px}form{flex-wrap:wrap;margin-top:26px}.field{flex:1 1 100%;padding:16px}.field.year-field{flex:1;border-left:0;border-top:1px solid #ddd}.search{border-top:1px solid #111!important}.search-hint{font-size:10px;line-height:1.8}.home-notes{grid-template-columns:1fr;gap:30px;padding:32px 0 45px}.home-notes article{padding-left:50px}.home-notes .number{position:absolute;left:0;top:10px}.home-notes h3{margin-top:10px}.home-notes .tiny{margin-top:10px}.footer-top,.footer-bottom{align-items:flex-start;flex-direction:column;gap:12px}.footer-top p{line-height:1.8}.results-heading{align-items:flex-start;gap:15px}.results-heading span{font-size:9px}.cand th,.cand td{padding:17px 12px}.cand th:nth-child(4),.cand td:nth-child(4){display:none}.cand th:nth-child(3),.cand td:nth-child(3){display:none}.cand td:first-child{font-size:12px;min-width:120px}.cand td.crno{font-size:10px}.pick{font-size:10px;padding:10px}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:19px 14px}.card .cv{font-size:20px}.signals{grid-template-columns:1fr;gap:10px}.sig{padding:18px}.detail-mode #corp{font-size:24px}.tabs{gap:24px}.story{padding:20px}.detail-mode form{flex-wrap:nowrap}.detail-mode .year-field{border-top:0}.detail-mode .wrap{padding-bottom:40px}.fin{min-width:650px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+.contact-direct{display:block;text-align:center;padding:14px;text-decoration:none;margin-top:14px}.contact-direct.hidden{display:none!important}.footer-contact{border:1px solid #aaa;color:#fff;background:transparent;padding:13px 24px;font-size:12px;cursor:pointer;letter-spacing:.05em}.footer-contact:hover{background:#fff;color:#111}
+.contact-phone{padding:9px;border:2px solid #555;border-radius:44px;width:380px;max-width:calc(100vw - 26px);height:736px;max-height:calc(100dvh - 32px);background:#171717;color:#111;box-shadow:0 30px 100px #0005;overflow:visible}.contact-phone::backdrop{background:#1119;backdrop-filter:blur(7px)}.phone-screen{border-radius:34px;background:#faf9f6;height:100%;overflow:auto;display:flex;flex-direction:column;position:relative;scrollbar-width:thin}.phone-status{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;flex-shrink:0;font-size:11px;font-weight:600}.phone-island{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:105px;height:23px;border-radius:30px;background:#171717}.phone-status svg{width:42px;height:12px}.phone-nav{display:flex;align-items:center;justify-content:space-between;margin:5px 23px 0;padding-bottom:16px;border-bottom:1px solid #ddd;font-size:12px;font-weight:600;letter-spacing:.13em}.contact-close{border:1px solid #ddd;border-radius:50%;background:transparent;color:#111;cursor:pointer;width:29px;height:29px;font-size:19px;display:grid;place-items:center}.phone-content{padding:25px 23px 20px;flex:1;display:flex;flex-direction:column}.contact-progress{display:flex;gap:6px;margin:0 0 28px}.contact-progress span{height:2px;background:#ddd;flex:1}.contact-progress span.done{background:#111}.contact-step-no{font-size:9px;letter-spacing:.18em;color:#777;margin-bottom:12px}.contact-step h2{font-size:25px;line-height:1.45;font-weight:500;letter-spacing:-.06em;margin:0 0 12px}.contact-lead{font-size:12px;color:#777;line-height:1.8;margin:0 0 25px}.purpose-cards{display:grid;gap:11px}.purpose-card{position:relative;padding:20px 17px;background:white;border:1px solid #ddd;text-align:left;cursor:pointer;color:#111}.purpose-card:hover,.purpose-card[aria-pressed=true]{border-color:#111;background:#f0efeb}.purpose-card span{font-family:Georgia,serif;font-size:12px;color:#999;display:block;margin-bottom:10px}.purpose-card b{font-size:13px;font-weight:500}.purpose-card i{position:absolute;right:16px;top:39px;font-style:normal}.contact-form.hidden{display:none!important}.contact-form{display:block!important;max-width:none!important;border:0!important;background:transparent!important;margin:0!important}.contact-step label{font-size:11px;display:block;margin:0 0 11px;color:#555}.contact-step input,.contact-step textarea{display:block;width:100%;min-width:0;border:1px solid #ccc;border-radius:0;background:#fff;padding:15px 13px;font-size:14px;color:#111;font-family:inherit}.contact-step textarea{resize:vertical;min-height:73px;max-height:120px;font-size:12px;line-height:1.6}.contact-step input::placeholder,.contact-step textarea::placeholder{color:#aaa}.contact-actions{display:flex;flex-direction:column;gap:12px;margin-top:24px}.contact-primary{background:#111;color:#fff;border:1px solid #111;min-height:46px;width:100%;font-size:12px;cursor:pointer;letter-spacing:.04em}.contact-primary:hover{background:#333}.contact-primary:disabled{background:#777;border-color:#777;cursor:wait}.contact-secondary{border:0;background:transparent;color:#666;text-decoration:underline;text-underline-offset:4px;padding:7px;font-size:11px;cursor:pointer}.contact-back{background:transparent;border:0;padding:0;color:#777;font-size:10px;cursor:pointer;margin-bottom:25px}.contact-summary{border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:11px 0;margin:20px 0}.contact-summary div{display:flex;justify-content:space-between;gap:10px;font-size:10px;line-height:2.2}.contact-summary dt{color:#888}.contact-summary dd{margin:0;text-align:right}.contact-notice{font-size:9px;color:#888;line-height:1.8;margin:16px 0 0}.contact-message{font-size:11px;line-height:1.8;color:#963f35;margin:12px 0 0;white-space:pre-line}.contact-success{padding-top:45px;text-align:center}.success-mark{width:62px;height:62px;border:1px solid #111;border-radius:50%;display:grid;place-items:center;font-size:24px;margin:0 auto 30px}.contact-success h2{font-size:25px;font-weight:500;line-height:1.5;letter-spacing:-.05em}.contact-success p{font-size:12px;color:#777;line-height:1.9}.phone-home{width:100px;height:4px;background:#222;border-radius:4px;margin:15px auto 10px;flex-shrink:0}.contact-honey{display:none!important}.contact-optional{color:#999;font-size:10px;font-weight:400}.contact-email-label{margin-top:16px!important}
+@media(max-height:730px){.contact-phone{height:calc(100dvh - 20px);max-height:none}.phone-content{padding-top:18px}.contact-progress{margin-bottom:20px}.purpose-card{padding:15px}.purpose-card i{top:30px}.contact-lead{margin-bottom:18px}.contact-actions{margin-top:18px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<header class="site-header"><div class="masthead"><span class="header-meta">THE FINANCIAL ARCHIVE</span><a class="brand" href="#" aria-label="FINARCHIVE 홈">FINARCHIVE</a><a class="header-search" href="#search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg><span>기업 검색</span></a></div><nav class="mainnav" aria-label="주요 메뉴"><a href="#search">기업 재무제표</a><a href="#about">재무제표 읽기</a><a href="#source">데이터 안내</a></nav></header>
+<section class="hero" aria-labelledby="hero-title">
+<svg class="architecture" viewBox="0 0 1600 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#a8aaa5"/><stop offset="1" stop-color="#e0dfd8"/></linearGradient><linearGradient id="facade"><stop stop-color="#757971"/><stop offset="1" stop-color="#282c29"/></linearGradient><pattern id="windows" width="34" height="30" patternUnits="userSpaceOnUse"><rect width="34" height="30" fill="#444a44"/><rect x="3" y="3" width="26" height="24" fill="#252d29"/><path d="M0 0H34M0 0V30" stroke="#9c9f92" stroke-width="2"/></pattern><pattern id="lines" width="24" height="640" patternUnits="userSpaceOnUse"><rect width="24" height="640" fill="#b7b9af"/><rect width="8" height="640" fill="#474e46"/><rect x="9" width="2" height="640" fill="#d6d8cb"/></pattern><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".1"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter></defs><rect width="1600" height="640" fill="url(#sky)"/><g filter="url(#noise)"><path d="M0 0H520L620 640H0Z" fill="url(#lines)"/><path d="M520 0 665 140 690 640 620 640Z" fill="#252d27"/><path d="M1020 180 1600 0V640H1030Z" fill="url(#windows)"/><path d="M820 400 1020 180 1030 640H820Z" fill="url(#facade)"/><path d="M850 410 1000 245M850 455 1000 320M850 500 1000 395M850 545 1000 470M850 590 1000 545" stroke="#8d9287" stroke-width="3"/><path d="M0 640V560L290 470 520 640M1100 640 1300 490 1600 520V640" fill="#1c221e"/></g></svg>
+<div><div class="eyebrow">A CLOSER LOOK AT BUSINESS</div><h1 id="hero-title">기업의 가치를<br>숫자로 읽다.</h1><p>복잡한 재무제표를 명료하게.<br>기업의 오늘과 어제를 한눈에 살펴보세요.</p><a class="hero-link" href="#search">기업 재무제표 살펴보기 &nbsp; ↓</a></div><div class="hero-caption"><span>FINANCIAL STATEMENTS, SIMPLIFIED.</span><span>01 — THE ARCHIVE</span></div></section>
+<main id="main" class="wrap">
+<div class="detail-top"><a href="#" id="detailHome">← 기업 검색으로</a><span>THE FINANCIAL REPORT</span></div>
+<section class="search-section" id="search" aria-label="기업 검색">
+<div class="section-kicker">DISCOVER THE NUMBERS</div><h2>어떤 기업이 궁금하신가요?</h2><p class="sub">기업명으로 검색하고 재무정보를 쉬운 설명과 함께 확인하세요.</p>
+<form id="form"><div class="field name-field"><label for="name">COMPANY NAME · 기업명</label><input id="name" placeholder="기업명을 입력하세요" name="company" enterkeyhint="search" autocomplete="organization" required /></div><div class="field year-field"><label for="year">FISCAL YEAR · 사업연도</label><select id="year" aria-label="사업연도"></select></div><button class="search" id="btn" type="submit">검색 &nbsp; →</button></form>
+<details id="apiConfig" style="max-width:840px;margin:16px auto;text-align:left;font-size:12px;color:#666"><summary style="cursor:pointer">공공데이터 API 인증키 설정</summary><p style="line-height:1.8">기업 재무정보 조회에 사용할 본인의 공공데이터포털 인증키를 입력해 주세요. 인증키는 저장하지 않으며 공식 API 조회에만 사용합니다.</p><label for="apiKey">인증키</label><input type="password" id="apiKey" autocomplete="off" spellcheck="false" placeholder="공공데이터포털 인증키 입력" style="display:block;width:100%;padding:12px;margin-top:8px;border:1px solid #ccc;border-radius:0" /></details><p class="search-hint">예: 삼성전자 · 메리츠자산운용 &nbsp; / &nbsp; 재무제표를 누르면 상세 화면으로 이동합니다.</p></section>
+  <div class="status-area"><div id="status" role="status" aria-live="polite"></div></div>
+  <div id="route"></div>
+
+  <!-- 후보 목록 -->
+  <div id="candBox" class="hidden">
+    <div class="results-heading"><h2>검색 결과</h2><span>법인 정보를 확인한 후 재무제표를 열어주세요.</span></div><div id="cand"></div>
+    <div class="pager" id="candPager"></div>
+  </div>
+
+  <!-- 재무제표 영역 -->
+  <div id="finBox" class="hidden">
+    <div class="corphead">
+      <button class="back hidden" id="back">← 검색 결과로</button>
+      <div id="corp"></div>
+    </div>
+
+    <div class="tabs" id="tabs">
+      <button data-tab="easy" class="active">한눈에 보기</button>
+      <button data-tab="bs">재무상태표</button>
+      <button data-tab="inco">손익계산서</button>
+    </div>
+
+    <div class="guide" id="guide"></div>
+
+    <div class="toolbar hidden" id="toolbar">
+      <div class="chips" id="chips"></div>
+      <div class="views hidden" id="views">
+        <button data-view="key" class="active">주요 항목만</button>
+        <button data-view="all">전체 항목</button>
+      </div>
+      <div class="units" id="units">
+        <span>단위</span>
+        <button data-unit="auto" class="active">자동</button>
+        <button data-unit="1">원</button>
+        <button data-unit="1000000">백만원</button>
+        <button data-unit="100000000">억원</button>
+      </div>
+    </div>
+
+    <div id="result"></div>
+    <div class="note" id="note"></div>
+    <div class="disc">※ 신호등과 설명은 일반적인 참고 기준이며 업종마다 다를 수 있습니다. 투자 판단의 근거가 아닌 이해를 돕기 위한 자료입니다.</div>
+  </div>
+<section class="home-notes" id="about" aria-label="재무제표 읽기"><article><span class="number">01</span><h3>한눈에 보는 기업의 성적표</h3><p>매출과 이익, 자산과 부채까지.<br>핵심 숫자를 쉬운 설명으로 읽어보세요.</p><div class="tiny">BUSINESS AT A GLANCE</div></article><article><span class="number">02</span><h3>숫자의 흐름을 비교하다</h3><p>재무상태표와 손익계산서를 오가며<br>전년 대비 변화를 살펴보세요.</p><div class="tiny">READ THE STATEMENTS</div></article><article id="source"><span class="number">03</span><h3>공공데이터를 바탕으로</h3><p>금융위원회 기업 재무정보를 조회합니다.<br>기업과 사업연도에 따라 제공 범위가 다릅니다.</p><div class="tiny">PUBLIC FINANCIAL DATA</div></article></section></main><footer class="site-footer"><div class="footer-top"><a href="#" class="footer-brand">FINARCHIVE</a><p>기업을 이해하는 또 하나의 시선.</p><button type="button" class="footer-contact" id="contactOpen" aria-haspopup="dialog" aria-controls="contactDialog">연락하기 &nbsp; ↗</button></div><div class="footer-bottom"><span>출처 · 금융위원회 공공데이터<br>본 서비스는 재무정보의 이해를 돕기 위한 참고 자료입니다.</span><span>THE FINANCIAL ARCHIVE © <span id="footerYear"></span></span></div></footer>
+
+<dialog class="contact-phone" id="contactDialog" aria-labelledby="contactTitle">
+<div class="phone-screen"><div class="phone-status" aria-hidden="true"><span>9:41</span><span class="phone-island"></span><svg viewBox="0 0 48 14" fill="currentColor"><path d="M0 10h3v4H0zm5-3h3v7H5zm5-3h3v10h-3zm5-4h3v14h-3z"/><rect x="25" y="2" width="19" height="10" rx="2" fill="none" stroke="currentColor"/><rect x="27" y="4" width="15" height="6" rx="1"/><path d="M45 5h2v4h-2z"/></svg></div>
+<div class="phone-nav"><span>FINARCHIVE</span><button type="button" class="contact-close" id="contactClose" aria-label="문의 창 닫기">×</button></div>
+<div class="phone-content"><div class="contact-progress" id="contactProgress" aria-label="문의 단계"><span class="done"></span><span></span><span></span></div>
+<form class="contact-form" id="contactForm" novalidate>
+<section class="contact-step" data-contact-step="0"><div class="contact-step-no">01 / 03 &nbsp; PURPOSE</div><h2 id="contactTitle" tabindex="-1">어떤 도움이<br>필요하신가요?</h2><p class="contact-lead">문의하실 내용을 선택해 주세요.<br>알맞은 안내를 준비하겠습니다.</p><div class="purpose-cards">
+<button class="purpose-card" type="button" data-purpose="세무회계 상담" aria-pressed="false"><span>01 — ACCOUNTING</span><b>세무회계 상담</b><i aria-hidden="true">→</i></button>
+<button class="purpose-card" type="button" data-purpose="사이트 기능 상담" aria-pressed="false"><span>02 — WEBSITE</span><b>사이트 기능 상담</b><i aria-hidden="true">→</i></button>
+<button class="purpose-card" type="button" data-purpose="그 외 문의하기" aria-pressed="false"><span>03 — OTHER</span><b>그 외 문의하기</b><i aria-hidden="true">→</i></button>
+</div></section>
+<section class="contact-step hidden" data-contact-step="1"><button class="contact-back" type="button" data-contact-back="0">← 문의 목적 다시 선택</button><div class="contact-step-no">02 / 03 &nbsp; PHONE</div><h2 tabindex="-1">연락받을 번호를<br>알려주세요.</h2><p class="contact-lead">전화 안내를 원하시면 입력해 주세요.<br>입력하지 않고 다음으로 넘어가셔도 됩니다.</p><label for="contactPhone">전화번호 <span class="contact-optional">선택</span></label><input id="contactPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" placeholder="010-0000-0000" aria-describedby="contactPhoneError"/><p class="contact-message" id="contactPhoneError" role="alert"></p><div class="contact-actions"><button class="contact-primary" id="contactPhoneNext" type="button">다음 &nbsp; →</button><button class="contact-secondary" id="contactPhoneSkip" type="button">전화번호 입력 건너뛰기</button></div></section>
+<section class="contact-step hidden" data-contact-step="2"><button class="contact-back" type="button" data-contact-back="1">← 이전 단계</button><div class="contact-step-no">03 / 03 &nbsp; EMAIL</div><h2 tabindex="-1">답변받을 이메일을<br>알려주세요.</h2><p class="contact-lead">문의에 대한 답변을 드릴 주소입니다.</p><label for="contactEmail">이메일 주소 <span class="contact-optional">필수</span></label><input id="contactEmail" type="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder="your@email.com" aria-describedby="contactSendMessage"/>
+<label class="contact-email-label" for="contactNote">문의 내용 <span class="contact-optional">선택</span></label><textarea id="contactNote" rows="2" maxlength="2000" placeholder="궁금한 내용을 간단히 남겨주세요."></textarea>
+<dl class="contact-summary"><div><dt>문의 목적</dt><dd id="contactPurposeSummary"></dd></div><div><dt>전화번호</dt><dd id="contactPhoneSummary"></dd></div></dl>
+<input class="contact-honey" name="_honey" id="contactHoney" type="text" tabindex="-1" autocomplete="off" aria-hidden="true"/>
+<button class="contact-primary" id="contactSend" type="submit">확인하고 보내기 &nbsp; →</button><p class="contact-notice">입력한 연락처는 문의 회신을 위해 사용됩니다. 자동 전송 연결 전에는 이메일 앱에서 문의를 보내실 수 있습니다.</p><p class="contact-message" id="contactSendMessage" role="status" aria-live="polite"></p><a class="contact-primary contact-direct hidden" id="contactDirect">이메일 앱에서 보내기 →</a></section>
+</form>
+<section class="contact-success hidden" id="contactSuccess" aria-live="polite"><div class="success-mark" aria-hidden="true">✓</div><h2 tabindex="-1">문의 전송을<br>요청했습니다.</h2><p>남겨주신 연락처로 답변드리겠습니다.<br>문의해 주셔서 감사합니다.</p><div class="contact-actions"><button class="contact-primary" id="contactDone" type="button">닫기</button></div></section>
+</div><div class="phone-home" aria-hidden="true"></div></div></dialog>
+
+<script>
+// ====== 설정 ======
+let SERVICE_KEY = "";
+const FINA_BASE   = "https://apis.data.go.kr/1160100/service/GetFinaStatInfoService_V2";
+const OUTLINE_URL = "https://apis.data.go.kr/1160100/service/GetCorpBasicInfoService_V2/getCorpOutline_V2";
+
+const SEARCH_ROWS  = 100;
+const SEARCH_PAGES = 3;
+const CAND_VIEW    = 15;
+const FIN_ROWS     = 100;
+const FIN_PAGES    = 10;
+const YEAR_TRIES   = 6;
+
+const TABS = {
+  easy: { label: "한눈에 보기", path: "getSummFinaStat_V2" },
+  bs:   { label: "재무상태표",  path: "getBs_V2" },
+  inco: { label: "손익계산서",  path: "getIncoStat_V2" },
+};
+
+const AMT_COLS = [
+  ["crtmAcitAmt", "당기"],
+  ["pvtrAcitAmt",  "전기"],
+  ["bpvtrAcitAmt", "전전기"],
+  ["thqrAcitAmt",  "당분기"],
+  ["lsqtAcitAmt",  "전분기"],
+];
+
+// ====== 탭별 안내문 ======
+const GUIDES = {
+  easy:
+    "💡 <b>이 화면은 회사의 '성적표'를 쉬운 말로 풀어 쓴 요약</b>이에요. " +
+    "얼마를 팔았는지(매출), 얼마가 남았는지(이익), 재산과 빚은 얼마인지를 한눈에 볼 수 있어요.",
+  bs:
+    "💡 <b>재무상태표는 회사의 '사진 한 장'</b>이에요. 결산일 현재 회사가 <b>무엇을 가지고 있고(자산)</b>, " +
+    "<b>얼마를 갚아야 하며(부채)</b>, <b>순수한 자기 몫(자본)</b>이 얼마인지 보여줘요. " +
+    "항상 <b>자산 = 부채 + 자본</b>이에요.",
+  inco:
+    "💡 <b>손익계산서는 1년 동안 찍은 '영상'</b>이에요. 1년간 <b>얼마를 벌어서(매출)</b>, " +
+    "<b>얼마를 쓰고(비용)</b>, <b>최종적으로 얼마가 남았는지(순이익)</b>를 위에서 아래로 차례대로 보여줘요.",
+};
+const GROUP_NOTE =
+  "<br>📌 <b>연결</b> 재무제표는 자회사까지 한 회사처럼 합친 숫자이고, <b>개별</b> 재무제표는 그 회사 하나만의 숫자예요.";
+
+// ====== 계정과목 쉬운 설명 ([정규식, 설명, 핵심여부]) ======
+const HINTS = [
+  // 재무상태표
+  [/^(자산총계|자산계|총자산)/, "회사가 가진 모든 재산의 합계예요.", true],
+  [/^유동자산/, "1년 안에 현금으로 바꿀 수 있는 재산이에요. (현금, 외상으로 판 돈, 재고 등)", true],
+  [/^비유동자산/, "1년 넘게 두고 쓰는 재산이에요. (건물, 기계, 장기 투자 등)", true],
+  [/^현금및현금성자산/, "당장 쓸 수 있는 현금과 예금이에요.", true],
+  [/^단기금융(상품|자산)/, "1년 안에 만기가 되는 예금·펀드 같은 금융상품이에요."],
+  [/^(매출채권|외상매출금)/, "물건을 팔고 아직 받지 못한 돈이에요."],
+  [/^재고자산/, "팔기 위해 쌓아둔 상품, 제품, 원재료예요.", true],
+  [/^유형자산/, "눈에 보이는 재산이에요. (토지, 건물, 기계 등)"],
+  [/^무형자산/, "눈에 안 보이는 재산이에요. (특허, 브랜드, 소프트웨어 등)"],
+  [/^투자부동산/, "임대·시세차익 목적으로 가진 부동산이에요."],
+  [/^(부채총계|부채계|총부채)/, "나중에 갚아야 할 빚의 합계예요.", true],
+  [/^유동부채/, "1년 안에 갚아야 하는 빚이에요.", true],
+  [/^비유동부채/, "1년 넘게 천천히 갚아도 되는 빚이에요.", true],
+  [/^(매입채무|외상매입금)/, "물건을 사고 아직 주지 못한 돈이에요."],
+  [/^단기차입금/, "1년 안에 갚아야 하는 대출이에요."],
+  [/^장기차입금/, "1년 넘게 갚아도 되는 대출이에요."],
+  [/^사채/, "회사가 채권을 발행해 빌린 돈이에요."],
+  [/^(자본총계|자본계|총자본)/, "재산에서 빚을 뺀 순수한 회사 주인의 몫이에요.", true],
+  [/^자본금/, "주주들이 처음에 회사에 넣은 돈이에요.", true],
+  [/^자본잉여금/, "주식을 액면가보다 비싸게 팔아 더 받은 돈 등이에요."],
+  [/^(이익잉여금|결손금)/, "회사가 지금까지 벌어서 쌓아둔 이익이에요. 마이너스(결손금)면 누적 손실이에요.", true],
+  [/^(부채및자본총계|부채와자본총계)/, "빚과 자기 몫을 합친 금액으로, 자산총계와 항상 같아요."],
+  // 손익계산서
+  [/^(매출액|영업수익)|^수익$/, "물건·서비스를 팔아 번 돈의 총액이에요. 비용을 빼기 전 금액이에요.", true],
+  [/^매출원가/, "물건을 만들거나 사오는 데 직접 들어간 비용이에요.", true],
+  [/^(매출총이익|매출총손익)/, "매출에서 매출원가를 뺀 금액이에요. 물건 자체로 남긴 이익이에요.", true],
+  [/^(판매비와?관리비|판관비)/, "월급, 광고비, 임대료 등 회사를 운영하는 데 쓴 비용이에요.", true],
+  [/^(영업이익|영업손익|영업손실)/, "본업으로 번 순수한 이익이에요. 마이너스면 본업에서 손해를 본 거예요.", true],
+  [/^영업외수익/, "본업 외에 번 돈이에요. (이자수익, 투자 이익 등)"],
+  [/^영업외비용/, "본업 외에 쓴 돈이에요. (이자비용, 투자 손실 등)"],
+  [/^금융수익/, "이자·배당·환율 등 금융 활동으로 번 돈이에요."],
+  [/^(금융비용|금융원가)/, "대출 이자 등 금융 활동으로 쓴 돈이에요."],
+  [/^법인세비용차감전/, "회사가 내는 세금을 빼기 전의 이익이에요.", true],
+  [/^법인세비용/, "번 돈에 대해 나라에 내는 세금이에요."],
+  [/^(당기순이익|당기순손익|당기순손실|분기순이익|반기순이익|분기순손익|반기순손익)/, "모든 비용과 세금을 낸 뒤 최종적으로 남은 돈이에요.", true],
+  [/^(총포괄|당기총포괄|포괄손익)/, "순이익에 보유 자산의 평가 손익 등을 더한 최종 성과예요."],
+  [/^기타포괄/, "아직 실현되지 않은 평가 손익이에요. (주식 평가, 환율 변동 등)"],
+  [/^주당/, "주식 1주당 이익이에요."],
+];
+
+function normAcc(s) {
+  return String(s ?? "")
+    .replace(/[\s·ㆍ]/g, "")
+    .replace(/^[ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩ]+\.?/, "")
+    .replace(/^\d+[.)]/, "")
+    .replace(/\((손실|이익|손익)\)/g, "");
+}
+function hintFor(name) {
+  const n = normAcc(name);
+  for (const [re, desc, key] of HINTS) if (re.test(n)) return { desc, key: !!key };
+  return { desc: "", key: false };
+}
+
+// ====== CORS 우회용 경로 ======
+const PROXIES = [
+  { name: "공공데이터 API", make: (u) => u },
+];
+let preferredIdx = 0;
+
+async function fetchWithFallback(targetUrl) {
+  const order = [preferredIdx, ...PROXIES.map((_, i) => i).filter((i) => i !== preferredIdx)];
+  const errors = [];
+  for (const idx of order) {
+    const p = PROXIES[idx];
+    try {
+      const res = await fetch(p.make(targetUrl), { signal: AbortSignal.timeout(15000) });
+      const json = JSON.parse(await res.text());
+      if (!json?.response) throw new Error("예상과 다른 응답 형식");
+      preferredIdx = idx;
+      return { json, via: p.name };
+    } catch (e) {
+      errors.push(`${p.name}: ${e.message}`);
+    }
+  }
+  const err = new Error("ALL_FAILED");
+  err.details = errors;
+  throw err;
+}
+
+function parseResponse(json) {
+  const header = json.response.header;
+  if (header && header.resultCode !== "00") {
+    throw new Error(`API 오류: ${header.resultMsg} (${header.resultCode})`);
+  }
+  const body = json.response.body ?? {};
+  let items = body.items?.item ?? [];
+  if (!Array.isArray(items)) items = [items];
+  return { items, total: Number(body.totalCount ?? items.length) };
+}
+
+// ====== 1단계: 기업명 → 후보 검색 ======
+async function searchCorps(name) {
+  let all = [], via = "", total = 0;
+  for (let p = 1; p <= SEARCH_PAGES; p++) {
+    const params = new URLSearchParams({
+      serviceKey: SERVICE_KEY, pageNo: p, numOfRows: SEARCH_ROWS,
+      resultType: "json", corpNm: name,
+    });
+    const r = await fetchWithFallback(`${OUTLINE_URL}?${params}`);
+    const { items, total: t } = parseResponse(r.json);
+    via = r.via; total = t;
+    all = all.concat(items);
+    if (all.length >= total || !items.length) break;
+  }
+  return { items: all, via, truncated: all.length < total, total };
+}
+
+// 법인등록번호가 같으면 같은 회사: 기준일 최신 행을 남기고 빈 항목은 보충
+function dedupeCorps(items) {
+  const map = new Map();
+  for (const it of items) {
+    const key = it.crno || `${it.corpNm}|${it.bzno}`;
+    const prev = map.get(key);
+    if (!prev) { map.set(key, { ...it }); continue; }
+    const newer = String(it.basDt ?? "") > String(prev.basDt ?? "");
+    const base = newer ? { ...it } : prev;
+    const other = newer ? prev : it;
+    for (const k of Object.keys(other)) {
+      if (isEmpty(base[k])) base[k] = other[k];
+    }
+    map.set(key, base);
+  }
+  return [...map.values()];
+}
+
+const normName = (s) =>
+  String(s ?? "").replace(/주식회사|\(주\)|㈜|\s/g, "").toLowerCase();
+
+// ====== 2단계: 재무제표 조회 ======
+async function fetchFinPages(path, crno, year) {
+  let all = [], via = "", total = 0;
+  for (let p = 1; p <= FIN_PAGES; p++) {
+    const params = new URLSearchParams({
+      serviceKey: SERVICE_KEY, pageNo: p, numOfRows: FIN_ROWS,
+      resultType: "json", crno, bizYear: year,
+    });
+    const r = await fetchWithFallback(`${FINA_BASE}/${path}?${params}`);
+    const { items, total: t } = parseResponse(r.json);
+    via = r.via; total = t;
+    all = all.concat(items);
+    if (all.length >= total || !items.length) break;
+  }
+  return { items: all, via };
+}
+
+async function resolveLatestYear(crno) {
+  const start = new Date().getFullYear();
+  for (let y = start; y > start - YEAR_TRIES; y--) {
+    statusEl.textContent = `최신 사업연도 확인 중... (${y}년)`;
+    const params = new URLSearchParams({
+      serviceKey: SERVICE_KEY, pageNo: 1, numOfRows: 1,
+      resultType: "json", crno, bizYear: y,
+    });
+    const { json } = await fetchWithFallback(`${FINA_BASE}/${TABS.easy.path}?${params}`);
+    const { items } = parseResponse(json);
+    if (items.length) return y;
+  }
+  return null;
+}
+
+function dedupeStat(items, tab) {
+  const map = new Map();
+  for (const it of items) {
+    const key = tab === "easy"
+      ? `${it.fnclDcd ?? ""}`
+      : `${it.fnclDcd ?? ""}|${it.acitId ?? ""}|${it.acitNm ?? ""}`;
+    const prev = map.get(key);
+    if (!prev || String(it.basDt ?? "") > String(prev.basDt ?? "")) map.set(key, it);
+  }
+  return [...map.values()];
+}
+
+async function getStat(tab, crno, year) {
+  const key = `${tab}|${crno}|${year}`;
+  if (!cache[key]) {
+    const { items, via } = await fetchFinPages(TABS[tab].path, crno, year);
+    cache[key] = { items: dedupeStat(items, tab), rawCount: items.length, via };
+  }
+  return cache[key];
+}
+
+// ====== 요소/상태 ======
+const $ = (id) => document.getElementById(id);
+const form = $("form"), nameEl = $("name"), yearEl = $("year"), btn = $("btn");
+const statusEl = $("status"), routeEl = $("route");
+const candBox = $("candBox"), candEl = $("cand"), candPager = $("candPager");
+const finBox = $("finBox"), corpEl = $("corp"), backBtn = $("back");
+const tabsEl = $("tabs"), toolbarEl = $("toolbar"), chipsEl = $("chips");
+const viewsEl = $("views"), unitsEl = $("units");
+const guideEl = $("guide"), resultEl = $("result"), noteEl = $("note");
+
+let candidates = [];
+let candidatePage = 1;
+let searchScrollY = 0;
+let selected = null;     // { crno, name, year }
+let currentTab = "easy";
+let currentUnit = "auto";
+let currentView = "key";
+let currentGroup = null;
+let cache = {};
+let yearCache = {};
+let currentItems = [];
+let prevItems = [];
+
+// 사업연도 선택지
+const thisYear = new Date().getFullYear();
+yearEl.innerHTML = `<option value="auto">자동 (최신)</option>`;
+for (let y = thisYear; y >= 2010; y--) {
+  yearEl.insertAdjacentHTML("beforeend", `<option value="${y}">${y}년</option>`);
+}
+
+const isEmpty = (v) => v === undefined || v === null || v === "";
+const esc = (s) =>
+  String(s ?? "-").replace(/[&<>"']/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const fmtCrno = (v) => (v && v.length === 13 ? `${v.slice(0, 6)}-${v.slice(6)}` : v ?? "-");
+
+const toNum = (v) => {
+  if (isEmpty(v)) return null;
+  const n = Number(v);
+  return Number.isNaN(n) ? null : n;
+};
+
+// 사람이 읽기 쉬운 한국식 금액 (조/억/만)
+function fmtKorean(n) {
+  if (n === 0) return "0원";
+  const sign = n < 0 ? "-" : "";
+  const a = Math.abs(n);
+  if (a >= 1e12) {
+    const jo = Math.floor(a / 1e12);
+    const eok = Math.round((a - jo * 1e12) / 1e8);
+    if (eok >= 10000) return `${sign}${(jo + 1).toLocaleString("ko-KR")}조원`;
+    return `${sign}${jo.toLocaleString("ko-KR")}조` + (eok ? ` ${eok.toLocaleString("ko-KR")}억원` : "원");
+  }
+  if (a >= 1e8) {
+    const e = a / 1e8;
+    return `${sign}${e.toLocaleString("ko-KR", { maximumFractionDigits: e < 100 ? 1 : 0 })}억원`;
+  }
+  if (a >= 1e4) return `${sign}${Math.round(a / 1e4).toLocaleString("ko-KR")}만원`;
+  return `${sign}${Math.round(a).toLocaleString("ko-KR")}원`;
+}
+
+const UNIT_LABEL = { 1: "원", 1000000: "백만원", 100000000: "억원" };
+
+function numClass(v) { return toNum(v) < 0 ? "num neg" : "num"; }
+function fmtAmt(v) {
+  const n = toNum(v);
+  if (n === null) return isEmpty(v) ? "-" : esc(v);
+  if (currentUnit === "auto") return fmtKorean(n);
+  const x = n / currentUnit;
+  return x.toLocaleString("ko-KR", { maximumFractionDigits: currentUnit === 1 ? 0 : 1 }) +
+    UNIT_LABEL[currentUnit];
+}
+const fmtPct = (n, d = 1) =>
+  n === null ? "-" : `${n.toLocaleString("ko-KR", { maximumFractionDigits: d })}%`;
+
+// 증감 표시 (전기 대비)
+function changeHtml(cur, prev, kind = "amt") {
+  if (cur === null || prev === null) return "";
+  if (kind === "pp") {
+    const d = cur - prev;
+    if (Math.abs(d) < 0.05) return `<span class="flat">― 전년과 비슷해요</span>`;
+    return d > 0
+      ? `<span class="up">▲ 전년보다 ${d.toLocaleString("ko-KR", { maximumFractionDigits: 1 })}%p 올랐어요</span>`
+      : `<span class="down">▼ 전년보다 ${Math.abs(d).toLocaleString("ko-KR", { maximumFractionDigits: 1 })}%p 내렸어요</span>`;
+  }
+  if (kind === "profit") {
+    if (prev <= 0 && cur > 0) return `<span class="up">▲ 적자에서 흑자로 전환했어요</span>`;
+    if (prev > 0 && cur <= 0) return `<span class="down">▼ 흑자에서 적자로 돌아섰어요</span>`;
+    if (prev < 0 && cur < 0) {
+      return cur < prev
+        ? `<span class="down">▼ 적자가 더 커졌어요</span>`
+        : `<span class="up">▲ 적자가 줄었어요</span>`;
+    }
+  }
+  if (prev === 0) return "";
+  const pct = ((cur - prev) / Math.abs(prev)) * 100;
+  if (Math.abs(pct) < 0.05) return `<span class="flat">― 전년과 비슷해요</span>`;
+  return pct > 0
+    ? `<span class="up">▲ 전년보다 ${pct.toLocaleString("ko-KR", { maximumFractionDigits: 1 })}% 늘었어요</span>`
+    : `<span class="down">▼ 전년보다 ${Math.abs(pct).toLocaleString("ko-KR", { maximumFractionDigits: 1 })}% 줄었어요</span>`;
+}
+
+// 표용 짧은 증감
+function shortChange(cur, prev) {
+  if (cur === null || prev === null) return `<span class="flat">-</span>`;
+  if (prev === 0) return `<span class="flat">-</span>`;
+  if (prev < 0 || cur < 0) {
+    if (cur === prev) return `<span class="flat">―</span>`;
+    return cur > prev ? `<span class="up">▲ 증가</span>` : `<span class="down">▼ 감소</span>`;
+  }
+  const pct = ((cur - prev) / prev) * 100;
+  if (Math.abs(pct) < 0.05) return `<span class="flat">― 0%</span>`;
+  return pct > 0
+    ? `<span class="up">▲ ${pct.toLocaleString("ko-KR", { maximumFractionDigits: 1 })}%</span>`
+    : `<span class="down">▼ ${Math.abs(pct).toLocaleString("ko-KR", { maximumFractionDigits: 1 })}%</span>`;
+}
+
+function showError(err) {
+  statusEl.className = "error";
+  if (err.message === "ALL_FAILED") {
+    console.error("호출 실패 상세:", err.details);
+    statusEl.innerHTML =
+      "공공데이터 API에 연결하지 못했습니다.<br>" +
+      "잠시 후 다시 시도하거나, 인증키 활성화 여부를 확인해 주세요.<br>" +
+      "<small>데이터 제공기관의 연결 상태에 따라 조회가 지연될 수 있습니다.</small>";
+  } else {
+    statusEl.textContent = err.message;
+  }
+}
+
+function resetAll() {
+  statusEl.className = "";
+  routeEl.textContent = "";
+  candBox.classList.add("hidden");
+  finBox.classList.add("hidden");
+  toolbarEl.classList.add("hidden");
+  resultEl.innerHTML = "";
+  noteEl.textContent = "";
+}
+
+function setGuide() {
+  guideEl.innerHTML = GUIDES[currentTab] + GROUP_NOTE;
+}
+
+// ====== 검색 흐름 ======
+function ensureServiceKey() {
+  SERVICE_KEY = $("apiKey").value.trim();
+  if (SERVICE_KEY) return true;
+  statusEl.className = "error";
+  statusEl.textContent = "기업 조회를 위해 공공데이터 API 인증키를 먼저 입력해 주세요.";
+  $("apiConfig").open = true;
+  $("apiKey").focus();
+  return false;
+}
+
+async function searchByName(name) {
+  if (!ensureServiceKey()) return;
+  btn.disabled = true;
+  btn.textContent = "검색 중…";
+  form.setAttribute("aria-busy", "true");
+  resetAll();
+  statusEl.textContent = "기업 검색 중입니다. 잠시만 기다려 주세요.";
+  statusEl.scrollIntoView({ block: "nearest", behavior: "auto" });
+  candidates = [];
+  selected = null;
+
+  try {
+    const { items, via, truncated, total } = await searchCorps(name);
+    routeEl.textContent = `호출 경로: ${via}`;
+
+    if (!items.length) {
+      statusEl.innerHTML =
+        "검색 결과가 없습니다.<br><small>정확한 법인명(예: 주식회사 포함 여부)을 확인해 보세요.</small>";
+      return;
+    }
+
+    candidates = dedupeCorps(items);
+
+    let msg = `'${esc(name)}' 검색 결과 ${candidates.length.toLocaleString()}개 회사 — 조회할 회사를 선택하세요.`;
+    if (truncated) msg += `<br><small>결과가 많아 일부(${items.length}/${total}건)만 표시합니다. 검색어를 더 구체적으로 입력해 보세요.</small>`;
+    statusEl.innerHTML = msg;
+    renderCandidates(1);
+
+  } catch (err) {
+    showError(err);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "검색 →";
+    form.removeAttribute("aria-busy");
+  }
+}
+
+function renderCandidates(page) {
+  candidatePage = page;
+  const totalPages = Math.ceil(candidates.length / CAND_VIEW);
+  const start = (page - 1) * CAND_VIEW;
+  const slice = candidates.slice(start, start + CAND_VIEW);
+
+  candBox.classList.remove("hidden");
+  finBox.classList.add("hidden");
+
+  candEl.innerHTML = `
+    <div class="tablebox"><table class="cand">
+      <thead><tr><th>법인명</th><th>법인등록번호</th><th>대표자</th><th>사업자등록번호</th><th></th></tr></thead>
+      <tbody>
+        ${slice.map((c, i) => `
+          <tr>
+            <td>${esc(c.corpNm)}</td>
+            <td class="crno">${esc(fmtCrno(c.crno))}</td>
+            <td>${esc(c.enpRprFnm)}</td>
+            <td>${esc(c.bzno)}</td>
+            <td><a class="pick" href="${esc(reportUrl(c))}" aria-label="${esc(c.corpNm)} 재무제표 보기">재무제표 보기 &nbsp; →</a></td>
+          </tr>`).join("")}
+      </tbody>
+    </table></div>`;
+
+  if (totalPages <= 1) { candPager.innerHTML = ""; return; }
+  candPager.innerHTML = `
+    <button id="cprev" ${page <= 1 ? "disabled" : ""}>이전</button>
+    <span>${page} / ${totalPages}</span>
+    <button id="cnext" ${page >= totalPages ? "disabled" : ""}>다음</button>`;
+  $("cprev").onclick = () => renderCandidates(page - 1);
+  $("cnext").onclick = () => renderCandidates(page + 1);
+}
+
+async function selectCorp(c) {
+  if (!ensureServiceKey()) return;
+  if (!c.crno) {
+    statusEl.className = "error";
+    statusEl.textContent = "이 회사는 법인등록번호 정보가 없어 재무제표를 조회할 수 없습니다.";
+    return;
+  }
+  btn.disabled = true;
+  statusEl.className = "";
+  candBox.classList.add("hidden");
+  finBox.classList.remove("hidden");
+  toolbarEl.classList.add("hidden");
+  resultEl.innerHTML = "";
+  noteEl.textContent = "";
+
+  selected = { crno: c.crno, name: c.corpNm, year: null };
+  corpEl.innerHTML = `${esc(c.corpNm)}<div class="corp-meta">법인등록번호 ${esc(fmtCrno(c.crno))}</div>`;
+  document.title = `${c.corpNm} · 재무제표 | FINARCHIVE`;
+  backBtn.classList.remove("hidden");
+
+  currentTab = "easy";
+  currentGroup = null;
+  [...tabsEl.children].forEach((x) => x.classList.toggle("active", x.dataset.tab === "easy"));
+  setGuide();
+
+  try {
+    await ensureYear();
+    if (selected.year) await load();
+  } catch (err) {
+    showError(err);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+async function ensureYear() {
+  const sel = yearEl.value;
+  if (sel !== "auto") { selected.year = sel; return; }
+
+  if (!yearCache[selected.crno]) {
+    const y = await resolveLatestYear(selected.crno);
+    if (!y) {
+      selected.year = null;
+      statusEl.innerHTML =
+        `최근 ${YEAR_TRIES}년간 재무정보가 없습니다.<br>` +
+        `<small>비상장·소규모 법인은 재무정보가 제공되지 않을 수 있습니다. 사업연도를 직접 선택해 보세요.</small>`;
+      return;
+    }
+    yearCache[selected.crno] = y;
+  }
+  selected.year = yearCache[selected.crno];
+}
+
+// ====== 재무제표 로드/렌더 ======
+async function load() {
+  if (!selected?.year) return;
+  const { crno, year } = selected;
+  const tab = currentTab;
+
+  btn.disabled = true;
+  statusEl.className = "";
+  noteEl.textContent = "";
+  resultEl.innerHTML = "";
+  toolbarEl.classList.add("hidden");
+  setGuide();
+
+  try {
+    statusEl.textContent = `${TABS[tab].label} 조회 중...`;
+    const cur = await getStat(tab, crno, year);
+
+    let prev = [];
+    if (tab === "easy" && cur.items.length) {
+      statusEl.textContent = "전년 데이터와 비교하는 중...";
+      try {
+        prev = (await getStat("easy", crno, Number(year) - 1)).items;
+      } catch (e) {
+        console.warn("전년 데이터 조회 실패:", e);
+      }
+    }
+    if (selected?.crno !== crno || currentTab !== tab || selected.year !== year) return;
+
+    const { items, rawCount, via } = cur;
+    routeEl.textContent = `호출 경로: ${via}`;
+
+    if (!items.length) {
+      statusEl.innerHTML =
+        `${year}년 ${TABS[tab].label} 데이터가 없습니다.<br>` +
+        `<small>다른 사업연도를 선택해 보세요. (최신 연도는 아직 공시 전일 수 있습니다)</small>`;
+      return;
+    }
+    currentItems = items;
+    prevItems = prev;
+    const auto = yearEl.value === "auto" ? " · 자동 선택된 최신 연도" : "";
+    statusEl.textContent = `${year}년 ${TABS[tab].label}${auto}` +
+      (rawCount !== items.length ? ` (중복 ${rawCount - items.length}건 제거)` : "");
+    render();
+  } catch (err) {
+    showError(err);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function render() {
+  if (!currentItems.length) return;
+  toolbarEl.classList.remove("hidden");
+  viewsEl.classList.toggle("hidden", currentTab === "easy");
+
+  const groups = [...new Map(currentItems.map((i) => [i.fnclDcd ?? "", i.fnclDcdNm ?? "재무제표"])).entries()];
+  if (!groups.some(([k]) => k === currentGroup)) {
+    const consol = groups.find(([, n]) => /연결/.test(n) && !/개별/.test(n));
+    currentGroup = (consol || groups[0])[0];
+  }
+  chipsEl.innerHTML = groups.length > 1
+    ? groups.map(([k, n]) => `<button data-g="${esc(k)}" class="${k === currentGroup ? "active" : ""}">${esc(n)}</button>`).join("")
+    : "";
+
+  [...viewsEl.querySelectorAll("button")].forEach((x) => x.classList.toggle("active", x.dataset.view === currentView));
+
+  resultEl.innerHTML = currentTab === "easy" ? renderEasy() : renderStatement();
+
+  const first = currentItems[0];
+  const cur = first.curCd ? ` · 통화: ${esc(first.curCd)}` : "";
+  const bas = first.basDt ? ` · 기준일자: ${esc(first.basDt)}` : "";
+  const unitTxt = currentUnit === "auto" ? "자동(조·억·만원)" : UNIT_LABEL[currentUnit];
+  noteEl.innerHTML = `금액 단위: ${unitTxt}${cur}${bas}`;
+}
+
+// ---- 한눈에 보기 ----
+function sigBox(cls, title, label, desc) {
+  return `
+    <div class="sig ${cls}">
+      <div class="st">${title}</div>
+      <div class="sl">${label}</div>
+      <div class="sd">${desc}</div>
+    </div>`;
+}
+
+function infoCard(label, valueHtml, changeHtmlStr, desc, neg) {
+  return `
+    <div class="card">
+      <div class="cl">${label}</div>
+      <div class="cv ${neg ? "neg" : ""}">${valueHtml}</div>
+      <div class="cc">${changeHtmlStr || "&nbsp;"}</div>
+      <div class="cd">${desc}</div>
+    </div>`;
+}
+
+function renderEasy() {
+  const it = currentItems.find((x) => (x.fnclDcd ?? "") === currentGroup) || currentItems[0];
+  const pv = prevItems.find((x) => (x.fnclDcd ?? "") === (it.fnclDcd ?? "")) || null;
+  const g = (o, f) => (o ? toNum(o[f]) : null);
+
+  const sale = g(it, "enpSaleAmt"),  pSale = g(pv, "enpSaleAmt");
+  const op   = g(it, "enpBzopPft"),  pOp   = g(pv, "enpBzopPft");
+  const npf  = g(it, "enpCrtmNpf"),  pNpf  = g(pv, "enpCrtmNpf");
+  const asset  = g(it, "enpTastAmt"), pAsset  = g(pv, "enpTastAmt");
+  const debt   = g(it, "enpTdbtAmt"), pDebt   = g(pv, "enpTdbtAmt");
+  const equity = g(it, "enpTcptAmt"), pEquity = g(pv, "enpTcptAmt");
+
+  let ratio = g(it, "fnclDebtRto");
+  if (ratio === null && debt !== null && equity !== null && equity > 0) ratio = (debt / equity) * 100;
+  let pRatio = g(pv, "fnclDebtRto");
+  if (pRatio === null && pDebt !== null && pEquity !== null && pEquity > 0) pRatio = (pDebt / pEquity) * 100;
+
+  const margin  = sale !== null && sale > 0 && op  !== null ? (op  / sale) * 100 : null;
+  const pMargin = pSale !== null && pSale > 0 && pOp !== null ? (pOp / pSale) * 100 : null;
+  const netMargin = sale !== null && sale > 0 && npf !== null ? (npf / sale) * 100 : null;
+  const year = selected?.year;
+
+  // ---- 한 줄 요약 ----
+  const lines = [];
+  if (sale !== null) {
+    let s = `${year}년에 <b>${fmtKorean(sale)}</b>어치를 팔았어요.`;
+    if (pSale !== null && pSale > 0) {
+      const pct = ((sale - pSale) / pSale) * 100;
+      if (Math.abs(pct) >= 0.1) {
+        s += ` (전년보다 ${Math.abs(pct).toLocaleString("ko-KR", { maximumFractionDigits: 1 })}% ${pct > 0 ? "늘었어요" : "줄었어요"})`;
+      }
+    }
+    lines.push(s);
+  }
+  if (margin !== null) {
+    const m = Math.abs(margin).toLocaleString("ko-KR", { maximumFractionDigits: 1 });
+    lines.push(margin >= 0
+      ? `본업으로는 100원을 팔면 약 <b>${m}원</b>이 남아요.`
+      : `본업으로는 100원을 팔 때마다 약 <b>${m}원씩 손해</b>를 보고 있어요.`);
+  } else if (op !== null) {
+    lines.push(op >= 0
+      ? `본업(영업)으로 <b>${fmtKorean(op)}</b>의 이익을 냈어요.`
+      : `본업(영업)에서 <b>${fmtKorean(Math.abs(op))}</b>의 손실이 났어요.`);
+  }
+  if (npf !== null) {
+    lines.push(npf >= 0
+      ? `세금과 이자까지 모두 낸 뒤 최종적으로 <b>${fmtKorean(npf)}</b>이 남았어요. (흑자)`
+      : `세금과 이자까지 모두 반영하면 최종적으로 <b>${fmtKorean(Math.abs(npf))}</b>의 손실이에요. (적자)`);
+  }
+  if (asset !== null) {
+    let s = `회사가 가진 재산은 모두 <b>${fmtKorean(asset)}</b>`;
+    if (debt !== null && equity !== null) {
+      s += `이고, 이 중 갚아야 할 빚이 <b>${fmtKorean(debt)}</b>, 순수한 자기 몫이 <b>${fmtKorean(equity)}</b>이에요.`;
+    } else s += "이에요.";
+    lines.push(s);
+  }
+  if (ratio !== null && equity !== null && equity > 0) {
+    lines.push(`자기 돈 100원당 빚이 약 <b>${Math.round(ratio).toLocaleString("ko-KR")}원</b> 있는 셈이에요.`);
+  }
+
+  const story = `
+    <div class="story">
+      <h3>📝 한 줄 요약</h3>
+      ${lines.length ? `<ul>${lines.map((l) => `<li>${l}</li>`).join("")}</ul>` : "<div class='cd'>요약할 수 있는 데이터가 부족해요.</div>"}
+    </div>`;
+
+  // ---- 신호등 ----
+  let sigProfit;
+  if (margin !== null) {
+    const m = fmtPct(margin);
+    if (margin >= 10)     sigProfit = sigBox("good", "💰 수익성 (돈을 잘 버나요?)", "🟢 좋음", `영업이익률 ${m}. 100원 팔아 10원 넘게 남기는 탄탄한 수준이에요.`);
+    else if (margin >= 3) sigProfit = sigBox("mid",  "💰 수익성 (돈을 잘 버나요?)", "🟡 보통", `영업이익률 ${m}. 이익은 나지만 아주 넉넉한 편은 아니에요.`);
+    else if (margin >= 0) sigProfit = sigBox("bad",  "💰 수익성 (돈을 잘 버나요?)", "🔴 아쉬움", `영업이익률 ${m}. 팔아도 남는 게 거의 없어요.`);
+    else                  sigProfit = sigBox("bad",  "💰 수익성 (돈을 잘 버나요?)", "🔴 주의", `영업이익률 ${m}. 본업에서 손해를 보고 있어요.`);
+  } else if (npf !== null) {
+    sigProfit = npf > 0
+      ? sigBox("good", "💰 수익성 (돈을 잘 버나요?)", "🟢 흑자", "최종 순이익이 플러스예요.")
+      : sigBox("bad",  "💰 수익성 (돈을 잘 버나요?)", "🔴 적자", "최종 순이익이 마이너스예요.");
+  } else {
+    sigProfit = sigBox("na", "💰 수익성 (돈을 잘 버나요?)", "⚪ 판단 불가", "매출·이익 데이터가 없어요.");
+  }
+
+  let sigSafe;
+  if (equity !== null && equity <= 0) {
+    sigSafe = sigBox("bad", "🛡️ 안정성 (빚이 감당 가능한가요?)", "🔴 위험", "자기 몫이 0 이하(자본잠식)예요. 가진 재산보다 빚이 더 많은 상태예요.");
+  } else if (ratio !== null) {
+    const r = fmtPct(ratio, 0);
+    if (ratio <= 100)      sigSafe = sigBox("good", "🛡️ 안정성 (빚이 감당 가능한가요?)", "🟢 안정", `부채비율 ${r}. 자기 돈보다 빚이 적어서 튼튼해요.`);
+    else if (ratio <= 200) sigSafe = sigBox("mid",  "🛡️ 안정성 (빚이 감당 가능한가요?)", "🟡 보통", `부채비율 ${r}. 빚이 자기 돈의 1~2배 정도예요. 일반적인 수준이에요.`);
+    else                   sigSafe = sigBox("bad",  "🛡️ 안정성 (빚이 감당 가능한가요?)", "🔴 주의", `부채비율 ${r}. 빚이 자기 돈의 2배를 넘어 부담이 커요. (금융업은 원래 높은 편이에요)`);
+  } else {
+    sigSafe = sigBox("na", "🛡️ 안정성 (빚이 감당 가능한가요?)", "⚪ 판단 불가", "자산·부채 데이터가 없어요.");
+  }
+
+  let sigGrow;
+  if (sale !== null && pSale !== null && pSale > 0) {
+    const gr = ((sale - pSale) / pSale) * 100;
+    const t = fmtPct(Math.abs(gr));
+    if (gr >= 5)       sigGrow = sigBox("good", "🚀 성장성 (커지고 있나요?)", "🟢 성장 중", `매출이 전년보다 ${t} 늘었어요.`);
+    else if (gr >= -5) sigGrow = sigBox("mid",  "🚀 성장성 (커지고 있나요?)", "🟡 제자리", `매출이 전년과 비슷해요. (${gr >= 0 ? "+" : "-"}${t})`);
+    else               sigGrow = sigBox("bad",  "🚀 성장성 (커지고 있나요?)", "🔴 위축", `매출이 전년보다 ${t} 줄었어요.`);
+  } else {
+    sigGrow = sigBox("na", "🚀 성장성 (커지고 있나요?)", "⚪ 판단 불가", "전년도 매출 데이터가 없어서 비교할 수 없어요.");
+  }
+
+  const signals = `<div class="signals">${sigProfit}${sigSafe}${sigGrow}</div>`;
+
+  // ---- 카드 ----
+  const cards = [];
+  if (sale !== null) cards.push(infoCard("매출액", fmtAmt(sale), changeHtml(sale, pSale),
+    "1년 동안 물건이나 서비스를 팔아서 받은 돈의 총액이에요. 아직 비용을 빼기 전 금액이에요."));
+  if (op !== null) cards.push(infoCard("영업이익", fmtAmt(op), changeHtml(op, pOp, "profit"),
+    "본업으로 번 돈에서 운영 비용을 뺀 이익이에요." +
+    (margin !== null ? ` 매출 대비 <b>${fmtPct(margin)}</b>예요.` : ""), op < 0));
+  if (npf !== null) cards.push(infoCard("당기순이익", fmtAmt(npf), changeHtml(npf, pNpf, "profit"),
+    "세금, 이자 등 모든 걸 낸 뒤 최종적으로 회사에 남은 돈이에요. 마이너스면 '적자'예요." +
+    (netMargin !== null ? ` 매출 대비 <b>${fmtPct(netMargin)}</b>예요.` : ""), npf < 0));
+  if (asset !== null) cards.push(infoCard("총자산", fmtAmt(asset), changeHtml(asset, pAsset),
+    "회사가 가진 모든 재산이에요. 현금, 건물, 기계, 투자한 것 등을 전부 합친 금액이에요."));
+  if (debt !== null) cards.push(infoCard("총부채", fmtAmt(debt), changeHtml(debt, pDebt),
+    "나중에 갚아야 하는 돈이에요. 은행 대출, 거래처에 줄 돈 등이 포함돼요."));
+  if (equity !== null) cards.push(infoCard("총자본", fmtAmt(equity), changeHtml(equity, pEquity),
+    "재산에서 빚을 뺀 '순수한 내 몫'이에요. 마이너스면 빚이 재산보다 많은 상태예요.", equity < 0));
+  if (ratio !== null) cards.push(infoCard("부채비율", fmtPct(ratio, 0), changeHtml(ratio, pRatio, "pp"),
+    "자기 돈 대비 빚이 얼마나 되는지 보여줘요. 100% 이하면 튼튼하고, 200%를 넘으면 빚 부담이 큰 편이에요."));
+
+  const cardsHtml = cards.length ? `<div class="cards">${cards.join("")}</div>` : "";
+
+  // ---- 재산 구성 막대 ----
+  let barHtml = "";
+  if (asset !== null && asset > 0 && debt !== null && equity !== null) {
+    const debtPct = Math.max(0, Math.min(100, (debt / asset) * 100));
+    const eqPct = 100 - debtPct;
+    barHtml = `
+      <div class="story">
+        <h3>🧱 회사 재산은 어떻게 이루어져 있을까요?</h3>
+        <div class="bar">
+          <div class="debt" style="width:${debtPct}%">${debtPct >= 12 ? `빚 ${debtPct.toFixed(0)}%` : ""}</div>
+          <div class="eq" style="width:${eqPct}%">${eqPct >= 12 ? `내 몫 ${eqPct.toFixed(0)}%` : ""}</div>
+        </div>
+        <div class="legend">
+          <span><i style="background:#ff8a78"></i>빚(부채) ${fmtAmt(debt)}</span>
+          <span><i style="background:#4ea3ff"></i>순수한 내 몫(자본) ${fmtAmt(equity)}</span>
+        </div>
+        <div class="cd">
+          ${equity < 0
+            ? "⚠️ 자기 몫이 마이너스(자본잠식)라서 가진 재산을 모두 팔아도 빚을 다 갚지 못하는 상태예요."
+            : "<b>자산 = 부채 + 자본</b>이에요. 회색(자본)의 비중이 클수록 빚 부담이 적고 안정적이에요."}
+        </div>
+      </div>`;
+  }
+
+  return story + signals + cardsHtml + barHtml;
+}
+
+// ---- 재무상태표 / 손익계산서 ----
+function renderStatement() {
+  const all = currentItems.filter((i) => (i.fnclDcd ?? "") === currentGroup);
+  const cols = AMT_COLS.filter(([f]) => all.some((r) => !isEmpty(r[f])));
+
+  if (!cols.length) {
+    console.warn("금액 컬럼을 찾지 못했습니다. 응답 예시:", all[0]);
+    return `<div class="note">이 재무제표에는 표시할 수 있는 금액 항목이 없습니다. 다른 연도나 재무제표를 선택해 주세요.</div>`;
+  }
+
+  let rows = all;
+  let fallback = false;
+  if (currentView === "key") {
+    const keyRows = all.filter((r) => hintFor(r.acitNm).key);
+    if (keyRows.length) rows = keyRows;
+    else fallback = true;
+  }
+
+  const showChange = cols.length >= 2;
+  const [f0] = cols[0];
+  const [f1] = cols[1] || [];
+
+  const body = rows.map((r) => {
+    const h = hintFor(r.acitNm);
+    const tag = h.key ? `<span class="tag">핵심</span>` : "";
+    const desc = h.desc ? `<span class="desc">${esc(h.desc)}</span>` : "";
+    return `
+      <tr>
+        <td><span class="acc">${esc(r.acitNm)}</span>${tag}${desc}</td>
+        ${cols.map(([f]) => `<td class="${numClass(r[f])}">${fmtAmt(r[f])}</td>`).join("")}
+        ${showChange ? `<td class="chg">${shortChange(toNum(r[f0]), toNum(r[f1]))}</td>` : ""}
+      </tr>`;
+  }).join("");
+
+  const hiddenCnt = all.length - rows.length;
+  const hint = currentView === "key" && hiddenCnt > 0
+    ? `<div class="note">핵심 항목만 보여드리고 있어요. 나머지 ${hiddenCnt}개 항목은 위의 '전체 항목'을 눌러 확인하세요.</div>`
+    : fallback
+      ? `<div class="note">핵심 항목을 구분하지 못해 전체 항목을 보여드려요.</div>`
+      : "";
+
+  return `
+    <div class="tablebox"><table class="fin">
+      <thead><tr>
+        <th>계정과목 (쉬운 설명)</th>
+        ${cols.map(([, n]) => `<th>${n}</th>`).join("")}
+        ${showChange ? `<th>${esc(cols[0][1])} vs ${esc(cols[1][1])}</th>` : ""}
+      </tr></thead>
+      <tbody>${body}</tbody>
+    </table></div>${hint}`;
+}
+
+// ====== 이벤트 ======
+let composingName = false;
+let enterHandled = false;
+nameEl.addEventListener("compositionstart", () => { composingName = true; });
+nameEl.addEventListener("compositionend", () => { composingName = false; });
+function submitCompanySearch() {
+  if (btn.disabled || composingName || !nameEl.value.trim()) return;
+  form.requestSubmit(btn);
+}
+nameEl.addEventListener("keydown", (e) => {
+  if (e.key !== "Enter") { enterHandled = false; return; }
+  // Let the IME finish the final Korean syllable before submitting.
+  if (composingName || e.isComposing || e.keyCode === 229) {
+    enterHandled = false;
+    return;
+  }
+  e.preventDefault();
+  if (e.repeat) return;
+  enterHandled = true;
+  submitCompanySearch();
+});
+nameEl.addEventListener("keyup", (e) => {
+  if (e.key !== "Enter") return;
+  e.preventDefault();
+  // Some IMEs consume keydown and finish composition before keyup.
+  if (!enterHandled && !composingName && !e.isComposing) submitCompanySearch();
+  enterHandled = false;
+});
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (btn.disabled || composingName || document.body.classList.contains("detail-mode")) return;
+  const name = nameEl.value.trim();
+  if (!name) { nameEl.focus(); return; }
+  searchByName(name);
+});
+
+// Preserve the result page and scroll position while showing a report in place.
+candEl.addEventListener("click", (event) => {
+  if (event.target.closest(".pick")) searchScrollY = window.scrollY;
+});
+backBtn.addEventListener("click", () => { location.hash = ""; });
+
+yearEl.addEventListener("change", async () => {
+  if (!selected) return;
+  btn.disabled = true;
+  try {
+    await ensureYear();
+    if (selected.year) await load();
+  } catch (err) { showError(err); }
+  finally { btn.disabled = false; }
+});
+
+tabsEl.addEventListener("click", (e) => {
+  const b = e.target.closest("button");
+  if (!b || !selected) return;
+  currentTab = b.dataset.tab;
+  currentGroup = null;
+  [...tabsEl.children].forEach((x) => x.classList.toggle("active", x === b));
+  load();
+});
+
+chipsEl.addEventListener("click", (e) => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  currentGroup = b.dataset.g;
+  render();
+});
+
+viewsEl.addEventListener("click", (e) => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  currentView = b.dataset.view;
+  render();
+});
+
+unitsEl.addEventListener("click", (e) => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  currentUnit = b.dataset.unit === "auto" ? "auto" : Number(b.dataset.unit);
+  [...unitsEl.querySelectorAll("button")].forEach((x) => x.classList.toggle("active", x === b));
+  render();
+});
+
+setGuide();
+
+function reportUrl(c) {
+  const params = new URLSearchParams({crno: String(c.crno || ""), name: c.corpNm || "기업", year: yearEl.value});
+  return location.pathname + location.search + "#statement?" + params.toString();
+}
+async function syncScreen() {
+  const detail = location.hash.startsWith("#statement?");
+  document.body.classList.toggle("detail-mode", detail);
+  if (detail) {
+    const p = new URLSearchParams(location.hash.slice(11));
+    const crno = p.get("crno") || "";
+    if (!/^\d{13}$/.test(crno)) {
+      resetAll(); statusEl.className = "error";
+      statusEl.textContent = "유효한 기업 정보가 없습니다. 기업 검색에서 다시 선택해 주세요.";
+      return;
+    }
+    const y = p.get("year");
+    yearEl.value = [...yearEl.options].some(o => o.value === y) ? y : "auto";
+    window.scrollTo(0, 0);
+    await selectCorp({crno, corpNm: p.get("name") || "기업"});
+  } else if (selected) {
+    selected = null; resetAll();
+    document.title = "기업 재무제표 조회 | FINARCHIVE";
+    if (candidates.length) {
+      renderCandidates(candidatePage);
+      statusEl.textContent = `${candidates.length}개 회사 — 조회할 회사를 선택하세요.`;
+      requestAnimationFrame(() => window.scrollTo(0, searchScrollY));
+    }
+  }
+}
+window.addEventListener("hashchange", () => {
+  if (location.hash.startsWith("#statement?") || document.body.classList.contains("detail-mode")) {
+    syncScreen().catch(showError);
+  }
+});
+$("footerYear").textContent = new Date().getFullYear();
+syncScreen().catch(showError);
+
+
+// Automatic external delivery stays off until the owner approves the processor.
+const CONTACT_EMAIL_ENABLED = false;
+// Contact wizard: all personal fields stay in memory until explicit submission.
+(() => {
+  const dialog = $("contactDialog"), contactForm = $("contactForm");
+  const steps = [...dialog.querySelectorAll("[data-contact-step]")];
+  const phone = $("contactPhone"), email = $("contactEmail"), send = $("contactSend");
+  const message = $("contactSendMessage");
+  let step = 0, purpose = "", pending = false, complete = false;
+  function showStep(next) {
+    step = next;
+    steps.forEach((el, i) => el.classList.toggle("hidden", i !== next));
+    [...$("contactProgress").children].forEach((el, i) => el.classList.toggle("done", i <= next));
+    $("contactProgress").setAttribute("aria-label", `문의 ${next + 1} / 3단계`);
+    $("contactPurposeSummary").textContent = purpose;
+    $("contactPhoneSummary").textContent = phone.value.trim() || "입력하지 않음";
+    if (dialog.open) {
+      steps[next].querySelector("h2").focus({preventScroll:true});
+      dialog.querySelector(".phone-screen").scrollTop = 0;
+    }
+  }
+  function resetContact() {
+    purpose = ""; complete = false; contactForm.reset();
+    message.textContent = ""; $("contactPhoneError").textContent = "";
+    $("contactDirect").classList.add("hidden"); $("contactDirect").removeAttribute("href");
+    phone.removeAttribute("aria-invalid"); email.removeAttribute("aria-invalid");
+    contactForm.classList.remove("hidden"); $("contactSuccess").classList.add("hidden");
+    $("contactProgress").classList.remove("hidden");
+    dialog.querySelectorAll("[data-purpose]").forEach(b => b.setAttribute("aria-pressed", "false"));
+    showStep(0);
+  }
+  $("contactOpen").addEventListener("click", () => {
+    if (complete) resetContact();
+    dialog.showModal(); showStep(step);
+  });
+  function closeContact() { if (!pending) dialog.close(); }
+  $("contactClose").addEventListener("click", closeContact);
+  $("contactDone").addEventListener("click", closeContact);
+  dialog.addEventListener("cancel", e => { if (pending) e.preventDefault(); });
+  dialog.addEventListener("click", e => { if (e.target === dialog) closeContact(); });
+  dialog.querySelectorAll("[data-purpose]").forEach(b => b.addEventListener("click", () => {
+    purpose = b.dataset.purpose;
+    dialog.querySelectorAll("[data-purpose]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    showStep(1);
+  }));
+  dialog.querySelectorAll("[data-contact-back]").forEach(b => b.addEventListener("click", () => showStep(Number(b.dataset.contactBack))));
+  function nextFromPhone() {
+    const raw = phone.value.trim();
+    const digits = raw.replace(/\D/g, "");
+    if (raw && (!/^\+?[0-9\s()-]+$/.test(raw) || digits.length < 8 || digits.length > 15)) {
+      $("contactPhoneError").textContent = "전화번호를 확인해 주세요. 입력 없이 건너뛸 수도 있습니다.";
+      phone.setAttribute("aria-invalid", "true"); phone.focus(); return;
+    }
+    $("contactPhoneError").textContent = ""; phone.removeAttribute("aria-invalid"); showStep(2);
+  }
+  $("contactPhoneNext").addEventListener("click", nextFromPhone);
+  $("contactPhoneSkip").addEventListener("click", () => { phone.value = ""; nextFromPhone(); });
+  phone.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); nextFromPhone(); } });
+  contactForm.addEventListener("submit", async e => {
+    e.preventDefault(); if (pending || complete) return;
+    if (step === 1) { nextFromPhone(); return; }
+    if (step !== 2 || !purpose) { showStep(0); return; }
+    email.value = email.value.trim();
+    if (!email.checkValidity()) {
+      message.textContent = "답변받을 이메일 주소를 정확히 입력해 주세요.";
+      email.setAttribute("aria-invalid", "true"); email.focus(); return;
+    }
+    email.removeAttribute("aria-invalid");
+    if ($("contactHoney").value) return;
+    if (!CONTACT_EMAIL_ENABLED) {
+      const body = `문의 목적: ${purpose}\n전화번호: ${phone.value.trim() || "미입력"}\n회신 이메일: ${email.value}\n\n문의 내용:\n${$("contactNote").value.trim() || "별도 내용 없음"}`;
+      $("contactDirect").href = "mailto:dbtjgml85@gmail.com?subject=" + encodeURIComponent(`[FINARCHIVE] ${purpose}`) + "&body=" + encodeURIComponent(body);
+      $("contactDirect").classList.remove("hidden");
+      message.textContent = "자동 메일 전송 연결을 준비 중입니다. 아래 버튼으로 이메일 앱을 열어 문의를 보내주세요.";
+      return;
+    }
+    pending = true; send.disabled = true; send.textContent = "보내는 중…";
+    $("contactClose").disabled = true; contactForm.setAttribute("aria-busy", "true");
+    contactForm.querySelectorAll("[data-contact-back]").forEach(b => { b.disabled = true; });
+    message.textContent = "문의를 전송하고 있습니다. 잠시만 기다려 주세요.";
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/dbtjgml85@gmail.com", {
+        method: "POST", headers: {"Content-Type":"application/json", "Accept":"application/json"},
+        body: JSON.stringify({
+          _subject: `[FINARCHIVE] ${purpose}`, _template: "table",
+          email: email.value, _replyto: email.value,
+          "문의 목적": purpose, "전화번호": phone.value.trim() || "미입력 (건너뛰기)",
+          "문의 내용": $("contactNote").value.trim() || "별도 내용 없음",
+          "접수 시각": new Date().toLocaleString("ko-KR", {timeZone:"Asia/Seoul"}),
+          "문의 사이트": location.origin, _honey: ""
+        }), signal: AbortSignal.timeout(20000)
+      });
+      const result = await response.json();
+      if (!response.ok || !(result.success === true || result.success === "true")) {
+        throw new Error("CONTACT_NOT_ACCEPTED");
+      }
+      complete = true; contactForm.classList.add("hidden");
+      $("contactProgress").classList.add("hidden"); $("contactSuccess").classList.remove("hidden");
+      $("contactSuccess").querySelector("h2").focus({preventScroll:true});
+      dialog.querySelector(".phone-screen").scrollTop = 0;
+    } catch (err) {
+      message.textContent = err.name === "TimeoutError"
+        ? "응답이 늦어 전송 결과를 확인할 수 없습니다. 잠시 후 수신 여부를 확인해 주세요."
+        : "문의를 전송하지 못했습니다. 인터넷 연결을 확인하고 다시 시도해 주세요. 입력한 내용은 유지됩니다.";
+    } finally {
+      pending = false; send.disabled = false; send.textContent = "확인하고 보내기 →";
+      $("contactClose").disabled = false; contactForm.removeAttribute("aria-busy");
+      contactForm.querySelectorAll("[data-contact-back]").forEach(b => { b.disabled = false; });
+    }
+  });
+})();
+
+</script>
+</body>
+</html>
